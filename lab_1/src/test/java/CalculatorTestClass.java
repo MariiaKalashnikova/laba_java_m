@@ -85,14 +85,14 @@ public class CalculatorTestClass {
     void testAddNeg() {
         StringCalculator calc = new StringCalculator();
         int result = calc.add("-6,-20,-3");
-        assertEquals(-29, result);
+        assertEquals(0, result);
     }
 
     @Test
     void testAddNegPos() {
         StringCalculator calc = new StringCalculator();
         int result = calc.add("-6,20");
-        assertEquals(14, result);
+        assertEquals(0, result);
     }
 
     @Test
@@ -221,7 +221,7 @@ public class CalculatorTestClass {
     void testDelNeg() {
         StringCalculator calc = new StringCalculator();
         int result = calc.add("//*\\n8*-9,2");
-        assertEquals(1, result);
+        assertEquals(0, result);
     }
 
     @Test
@@ -269,4 +269,12 @@ public class CalculatorTestClass {
         int result = calc.add("//4\\n541");
         assertEquals(6, result);
     }
+    @Test
+    void testNeg() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("-5");
+        assertEquals(0, result);
+    }
+
 }
+
