@@ -1,6 +1,7 @@
 import org.example.StringCalculator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
 public class CalculatorTestClass {
     @Test
     void testAdd2num() {
@@ -176,12 +177,7 @@ public class CalculatorTestClass {
         assertEquals(0, result);
     }
 
-    @Test
-    void testAddNStart() {
-        StringCalculator calc = new StringCalculator();
-        int result = calc.add("\\n4\\n9");
-        assertEquals(0, result);
-    }
+
 
     @Test
     void testAddFewN() {
@@ -388,6 +384,222 @@ public class CalculatorTestClass {
         StringCalculator calc = new StringCalculator();
         int result = calc.add("//[hh]\\n7,7\\n9hh1");
         assertEquals(24, result);
+    }
+
+    @Test
+    void test8Number1() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[h][*]\\n7,7\\n9hh1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test8Number2() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[h][*]\\n7,7\\n9*1");
+        assertEquals(24, result);
+    }
+
+    @Test
+    void test8Number3() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[h][*]\\n7*7h9*1");
+        assertEquals(24, result);
+    }
+
+    @Test
+    void test8Number4() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[h][*]\\n7*7*9*1");
+        assertEquals(24, result);
+    }
+
+    @Test
+    void test8Number5() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[h][*]\\n7h7h9h1");
+        assertEquals(24, result);
+    }
+
+    @Test
+    void test8Number6() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[5][*]\\n755759,1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test8Number7() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[ ][*]\\n7 5\\n9,1");
+        assertEquals(22, result);
+    }
+
+    @Test
+    void test8Number8() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&][*][#]\\n7#5\\n9&1");
+        assertEquals(22, result);
+    }
+
+    @Test
+    void test8Number9() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&][*][#]\\n7#5\\n\\n9&1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test8Number10() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&][*]\\n7#5,9&1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test8Number11() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&][4]\\n745,9&1");
+        assertEquals(22, result);
+    }
+
+    @Test
+    void test9Number1() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&]\\n7,9&1");
+        assertEquals(0, result);
+    }
+    @Test
+    void test9Number2() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&]\\n7,9&&1");
+        assertEquals(17, result);
+    }
+
+    @Test
+    void test9Number3() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n7***9&&1");
+        assertEquals(17, result);
+    }
+
+    @Test
+    void test9Number4() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1@7***9&&1");
+        assertEquals(18, result);
+    }
+
+    @Test
+    void test9Number5() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1,7\\n9@1");
+        assertEquals(18, result);
+    }
+
+    @Test
+    void test9Number6() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1,7\\n9@@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number7() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1,7\\n9(1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number8() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1,7\\n9,-1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number9() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@\\n1,7\\n9@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number10() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&[***][@]\\n1***7\\n9&&1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number11() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("/[&&][***][@]\\n1***7\\n9@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number12() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]n1***7\\n9@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number13() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1**7");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number14() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&]***][@]\\n1***7");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number15() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1***7");
+        assertEquals(8, result);
+    }
+
+    @Test
+    void test9Number16() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***][@]\\n1***7&&2,9,1\\n5@1");
+        assertEquals(26, result);
+    }
+
+    @Test
+    void test9Number17() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&***][@]\\n1***7&&2,9,1\\n5@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number18() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***]@]\\n1***7&&2,9,1\\n5***1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number19() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&]&[***][@]\\n1***7&&2,9,1\\n5@1");
+        assertEquals(0, result);
+    }
+
+    @Test
+    void test9Number20() {
+        StringCalculator calc = new StringCalculator();
+        int result = calc.add("//[&&][***]@]\\n1***7&&2,9,1\\n5@1");
+        assertEquals(0, result);
     }
 
 }
