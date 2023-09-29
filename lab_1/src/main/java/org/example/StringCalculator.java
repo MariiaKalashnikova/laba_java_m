@@ -11,11 +11,8 @@ public class StringCalculator {
                 del++;
             }}
 
-        int count_0 = 0;
-        if(del == 1) {
-            count_0 = 5;
-        }
-        for(int i=count_0; i < number.length(); i++) {
+
+        for(int i=0; i < number.length(); i++) {
             if(number.charAt(i)==',') {
                 coma_2+=1;
             }
@@ -31,7 +28,6 @@ public class StringCalculator {
             }
         }
         //підрахунок кількості ком або знаків \n
-
         int result = 0, j = 0;
         coma_2 += 1;
         int[] arr = new int[coma_2];
@@ -69,13 +65,11 @@ public class StringCalculator {
                     //якщо наступний елемент цифра, записання її в рядок
                     number_1 = number_1+number.charAt(i);
                 }
-
             }
             int number_arr = Integer.parseInt(number_1);
             if(number_arr<0) {
                 neg_count++;
             }
-
             int[] arr_negative = new int[neg_count];
             int q = 0;
             if (neg_count > 0) {
@@ -90,9 +84,7 @@ public class StringCalculator {
                         arr_negative[neg_count-1] = number_arr;
                         q++;
                     }
-
                 }}
-
             if(neg_count > 0) {
                 try {
                     throw new NegativeException("Від'ємне число: ", arr_negative);
@@ -108,11 +100,14 @@ public class StringCalculator {
             else {
                 for(int y = 0; y<arr.length; y++) {
                     //підрахунок cуми елементів масиву
-                    result = result+arr[y];
+                    if(arr[y] <= 1000) {
+                        result+=arr[y];}
                 }
                 //додавання останньої цифри з рядка
                 if(er==0) {
-                    result = result+number_arr;}
+                    if(number_arr < 1001) {
+                        result+=number_arr;}
+                }
                 else {
                     result=0;
                 }
