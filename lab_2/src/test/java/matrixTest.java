@@ -6,16 +6,16 @@ import org.example.Matrix;
 import org.example.matrix_im;
 
 public class matrixTest {
-   @Test
+    @Test
     void test_1() {
         Matrix test__1 = new Matrix(2,3);
-       double[][] matr_t1 = {
-               {3, 9, 12},
-               {6, 2, -9}
-       };
-       test__1.fill(matr_t1);
-       double val_t = test__1.val(2, 2);
-       assertEquals(2, val_t);
+        double[][] matr_t1 = {
+                {3, 9, 12},
+                {6, 2, -9}
+        };
+        test__1.fill(matr_t1);
+        double val_t = test__1.val(2, 2);
+        assertEquals(2, val_t);
 
     }
 
@@ -208,24 +208,7 @@ public class matrixTest {
         assertFalse(eq);
     }
 
-    @Test
-    void test_12() {
-        Matrix test__1 = new Matrix(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
 
-        double[][] matr_t1 = {
-                {3, 10},
-                {25, -4}
-        };
-        double[][] matr_t2 = {
-                {3, 10},
-                {25, -4}
-        };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        boolean eq = test__1.equals(test__2);
-        assertFalse(eq);
-    }
 
     @Test
     void test_13() {
@@ -301,7 +284,7 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         test__3.fill(matr_t3);
-        Matrix test = test__1.addit(test__1, test__2);
+        Matrix test = test__1.addit(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
@@ -326,9 +309,35 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         test__3.fill(matr_t3);
-        Matrix test = test__1.addit(test__1, test__2);
+        Matrix test = test__1.addit(test__2);
         boolean eq = test__3.equals(test);
         assertFalse(eq);
+    }
+    @Test
+    void test_17_1() {
+        Matrix test__1 = new Matrix(2,2);
+        Matrix test__3 = new Matrix(2, 2);
+        Matrix test__2_m = new Matrix(2,2);
+        double[][] matr_t1 = {
+                {3, 10},
+                {25, -4}
+        };
+        double[][] matr_t2 = {
+                {2, 10},
+                {-25, -4}
+        };
+        double[][] matr_t3 = {
+                {5, 20},
+                {0, -8}
+        };
+        test__1.fill(matr_t1);
+
+        test__2_m.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(test__2_m);
+        test__3.fill(matr_t3);
+        Matrix test = test__1.addit(test__2);
+        boolean eq = test__3.equals(test);
+        assertTrue(eq);
     }
 
     @Test
@@ -348,7 +357,7 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         assertThrows(IllegalStateException.class, () -> {
-            test__1.addit(test__1, test__2);
+            test__1.addit(test__2);
         });
     }
     @Test
@@ -371,7 +380,7 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         test__3.fill(matr_t3);
-        Matrix test = test__1.mult(test__1, test__2);
+        Matrix test = test__1.mult(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
@@ -397,7 +406,7 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         test__3.fill(matr_t3);
-        Matrix test = test__1.mult(test__1, test__2);
+        Matrix test = test__1.mult(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
@@ -418,7 +427,7 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
         assertThrows(IllegalStateException.class, () -> {
-            test__1.mult(test__1, test__2);
+            test__1.mult(test__2);
         });
 
     }
@@ -622,12 +631,13 @@ public class matrixTest {
     }
     @Test
     void test_im1() {
-        matrix_im test__1 = new matrix_im(2,3);
+        Matrix matr = new Matrix(2, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double val_t = test__1.val(2, 2);
         assertEquals(2, val_t);
 
@@ -635,40 +645,29 @@ public class matrixTest {
 
     @Test
     void test_im2() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double val_t = test__1.val(1, 1);
         assertEquals(3, val_t);
     }
 
-    @Test
-    public void testInvalid_im() {
-        matrix_im test__1 = new matrix_im(3,3);
-        double[][] matr_t1 = {
-                {3, 9, 12},
-                {6, 2, -9},
-                {2, 4, 5}
-        };
-        test__1.fill(matr_t1);
-        assertThrows(IllegalStateException.class, () -> {
-            test__1.val(4, 1);
-        });
-    }
 
     @Test
     void test_3_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double[] row_t = test__1.row_1(1);
         double[] res = {3.0, 9.0, 12.0};
         assertArrayEquals(res, row_t, 0.0001);
@@ -676,13 +675,15 @@ public class matrixTest {
 
     @Test
     void test_4_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
+
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double[] row_t = test__1.row_1(3);
         double[] res = {2.0, 4.0, 5.0};
         assertArrayEquals(res, row_t, 0.0001);
@@ -690,13 +691,14 @@ public class matrixTest {
 
     @Test
     void test_5_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double[] row_t = test__1.col_1(3);
         double[] res = {12.0, -9.0, 5.0};
         assertArrayEquals(res, row_t, 0.0001);
@@ -704,13 +706,15 @@ public class matrixTest {
 
     @Test
     void test_6_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
+
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         double[] row_t = test__1.col_1(1);
         double[] res = {3.0, 6.0, 2.0};
         assertArrayEquals(res, row_t, 0.0001);
@@ -718,13 +722,14 @@ public class matrixTest {
 
     @Test
     public void testInvalid_1_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
 
         assertThrows(IllegalStateException.class, () -> {
             test__1.col_1(4);
@@ -733,13 +738,14 @@ public class matrixTest {
 
     @Test
     public void testInvalid_2_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3, 3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         assertThrows(IllegalStateException.class, () -> {
             test__1.row_1(4);
         });
@@ -747,13 +753,14 @@ public class matrixTest {
 
     @Test
     void test_7_im() {
-        matrix_im test__1 = new matrix_im(3,3);
+        Matrix matr = new Matrix(3,3);
         double[][] matr_t1 = {
                 {3, 9, 12},
                 {6, 2, -9},
                 {2, 4, 5}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         int[] size_t = test__1.size_1();
         int[] res = {3, 3};
         assertArrayEquals(res, size_t);
@@ -762,10 +769,6 @@ public class matrixTest {
     @Test
     void test_8_im() {
         matrix_im test__1 = new matrix_im(1,3);
-        double[][] matr_t1 = {
-                {3, 9, 12}
-        };
-        test__1.fill(matr_t1);
         int[] size_t = test__1.size_1();
         int[] res = {1, 3};
         assertArrayEquals(res, size_t);
@@ -773,13 +776,13 @@ public class matrixTest {
 
     @Test
     void test_9_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 9},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         matrix_im test__2 = new matrix_im(test__1);
         boolean eq = test__1.equals(test__2);
         assertTrue(eq);
@@ -787,8 +790,7 @@ public class matrixTest {
 
     @Test
     void test_10_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
 
         double[][] matr_t1 = {
                 {3, 9},
@@ -798,16 +800,16 @@ public class matrixTest {
                 {3, 9},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
         boolean eq = test__1.equals(test__2);
         assertTrue(eq);
     }
     @Test
     void test_11_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
-
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -816,15 +818,16 @@ public class matrixTest {
                 {3, 9},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
         boolean eq = test__1.equals(test__2);
         assertFalse(eq);
     }
 
     @Test
     void test_12_im() {
-        matrix_im test__1 = new matrix_im(2,2);
         Matrix test__2 = new Matrix(2, 2);
 
         double[][] matr_t1 = {
@@ -835,16 +838,15 @@ public class matrixTest {
                 {3, 10},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
         test__2.fill(matr_t2);
+        matrix_im test__1 = new matrix_im(test__2);
         boolean eq = test__1.equals(test__2);
         assertFalse(eq);
     }
 
     @Test
     void test_13_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
 
         double[][] matr_t1 = {
                 {3, 10},
@@ -854,15 +856,16 @@ public class matrixTest {
                 {3, 10},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
         assertEquals(test__1.hashCode(), test__2.hashCode());
     }
 
     @Test
     void test_14_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
 
         double[][] matr_t1 = {
                 {3, 10},
@@ -872,16 +875,16 @@ public class matrixTest {
                 {3, 10},
                 {25, 4}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
         assertNotEquals(test__1.hashCode(), test__2.hashCode());
     }
 
     @Test
     void test_15_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
-
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -890,16 +893,16 @@ public class matrixTest {
                 {2, 10},
                 {25, -4}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
         assertNotEquals(test__1.hashCode(), test__2.hashCode());
     }
 
     @Test
     void test_16_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -912,19 +915,20 @@ public class matrixTest {
                 {5, 20},
                 {0, -8}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        test__3.fill(matr_t3);
-        matrix_im test = test__1.addit(test__1, test__2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
+        matrix_im test = test__1.addit(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
 
     @Test
     void test_17_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -937,19 +941,21 @@ public class matrixTest {
                 {5, 20},
                 {0, 8}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        test__3.fill(matr_t3);
-        matrix_im test = test__1.addit(test__1, test__2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
+        matrix_im test = test__1.addit(test__2);
         boolean eq = test__3.equals(test);
         assertFalse(eq);
     }
 
     @Test
     public void testInvalid_3_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 1);
-
+        Matrix matr_1 = new Matrix(2, 2);
+        Matrix matr_2 = new Matrix(2, 1);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -959,17 +965,17 @@ public class matrixTest {
                 {-25}
         };
 
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr_1.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr_1);
+        matr_2.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr_2);
         assertThrows(IllegalStateException.class, () -> {
-            test__1.addit(test__1, test__2);
+            test__1.addit(test__2);
         });
     }
     @Test
     void test_18_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(2, 2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -982,19 +988,22 @@ public class matrixTest {
                 {-244, -10},
                 {150, 266}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        test__3.fill(matr_t3);
-        matrix_im test = test__1.mult(test__1, test__2);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
+        matrix_im test = test__1.mult(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
 
     @Test
     void test_19_im() {
-        matrix_im test__1 = new matrix_im(2,3);
-        matrix_im test__2 = new matrix_im(3, 2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr_1 = new Matrix(2,3);
+        Matrix matr_2 = new Matrix(3, 2);
+        Matrix matr_3 = new Matrix(2, 2);
         double[][] matr_t1 = {
                 {3, 10, 9},
                 {25, -4, 7}
@@ -1008,18 +1017,21 @@ public class matrixTest {
                 {-235, 8},
                 {157, 280}
         };
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        test__3.fill(matr_t3);
-        matrix_im test = test__1.mult(test__1, test__2);
+        matr_1.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr_1);
+        matr_2.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr_2);
+        matr_3.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr_3);
+        matrix_im test = test__1.mult(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
 
     @Test
     public void testInvalid_4_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__2 = new matrix_im(1, 2);
+        Matrix matr_1 = new Matrix(2, 2);
+        Matrix matr_2 = new Matrix(1,2);
 
         double[][] matr_t1 = {
                 {3, 10},
@@ -1029,18 +1041,19 @@ public class matrixTest {
                 {2, 3},
         };
 
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
+        matr_1.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr_1);
+        matr_2.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr_2);
         assertThrows(IllegalStateException.class, () -> {
-            test__1.mult(test__1, test__2);
+            test__1.mult(test__2);
         });
 
     }
 
     @Test
     void test_20_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -1050,15 +1063,17 @@ public class matrixTest {
                 {3, 25},
                 {10, -4}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__2 = new matrix_im(matr);
         matrix_im test = test__1.transp(test__1);
-        boolean eq = test__3.equals(test);
+        boolean eq = test__2.equals(test);
         assertTrue(eq);
     }
     @Test
     public void testInvalid_5_im() {
-        matrix_im test__1 = new matrix_im(2,3);
+        Matrix matr = new Matrix(2,3);
 
 
         double[][] matr_t1 = {
@@ -1066,7 +1081,8 @@ public class matrixTest {
                 {25, -4, 9}
         };
 
-        test__1.fill(matr_t1);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
         assertThrows(IllegalStateException.class, () -> {
             test__1.transp(test__1);
         });
@@ -1075,40 +1091,38 @@ public class matrixTest {
 
     @Test
     void test_21_im() {
-        matrix_im test__1 = new matrix_im();
-        matrix_im test__3 = new matrix_im(2, 2);
-
+        Matrix test__3 = new Matrix(2, 2);
         double[][] matr_t3 = {
                 {3, 0},
                 {0, -4}
         };
         test__3.fill(matr_t3);
         double[] vector_t = {3, -4};
+        matrix_im test__1 = new matrix_im();
+        matrix_im test__2 = new matrix_im(test__3);
         matrix_im test = test__1.diag(vector_t);
-        boolean eq = test__3.equals(test);
+        boolean eq = test__2.equals(test);
         assertTrue(eq);
     }
 
     @Test
     void test_22_im() {
         matrix_im test__1 = new matrix_im();
-        matrix_im test__3 = new matrix_im(2, 2);
-
+        Matrix test__3 = new Matrix(2, 2);
         double[][] matr_t3 = {
                 {1, 1},
                 {1, 1}
         };
         test__3.fill(matr_t3);
-
+        matrix_im test__2 = new matrix_im(test__3);
         matrix_im test = test__1.one(2, 2);
-        boolean eq = test__3.equals(test);
+        boolean eq = test__2.equals(test);
         assertTrue(eq);
     }
 
     @Test
     void test_23_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {3, 10},
                 {25, -4}
@@ -1118,8 +1132,11 @@ public class matrixTest {
                 {3, 10},
                 {0, -87.33}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
+
         matrix_im test = test__1.lower(test__1);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
@@ -1127,8 +1144,7 @@ public class matrixTest {
 
     @Test
     void test_24_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix (2,2);
         double[][] matr_t1 = {
                 {0, 10},
                 {25, -4}
@@ -1138,8 +1154,10 @@ public class matrixTest {
                 {25, -4},
                 {0, 10}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
         matrix_im test = test__1.lower(test__1);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
@@ -1147,8 +1165,7 @@ public class matrixTest {
 
     @Test
     void test_25_im() {
-        matrix_im test__1 = new matrix_im(3,3);
-        matrix_im test__3 = new matrix_im(3, 3);
+        Matrix matr = new Matrix(3,3);
         double[][] matr_t1 = {
                 {5, 10, 8},
                 {25, 0, 9},
@@ -1160,8 +1177,10 @@ public class matrixTest {
                 {0, -50, -31},
                 {0, 0, 5.14}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
         matrix_im test = test__1.lower(test__1);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
@@ -1169,8 +1188,7 @@ public class matrixTest {
 
     @Test
     void test_26_im() {
-        matrix_im test__1 = new matrix_im(3,3);
-        matrix_im test__3 = new matrix_im(3, 3);
+        Matrix matr = new Matrix(3,3);
         double[][] matr_t1 = {
                 {5, 10, 8},
                 {25, 0, 9},
@@ -1182,8 +1200,10 @@ public class matrixTest {
                 {8.5, 7.5, 0},
                 {11, -5, 6}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
         matrix_im test = test__1.up(test__1);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
@@ -1191,8 +1211,7 @@ public class matrixTest {
 
     @Test
     void test_27_im() {
-        matrix_im test__1 = new matrix_im(2,2);
-        matrix_im test__3 = new matrix_im(2, 2);
+        Matrix matr = new Matrix(2,2);
         double[][] matr_t1 = {
                 {5, 10},
                 {25, 3}
@@ -1202,21 +1221,24 @@ public class matrixTest {
                 {-78.33, 0},
                 {25, 3}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr);
+        matr.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr);
         matrix_im test = test__1.up(test__1);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
     @Test
     public void testInvalid_9_im() {
-        matrix_im test__1 = new matrix_im(3,2);
+        Matrix test__2 = new Matrix(3,2);
         double[][] matr_t1 = {
                 {3, 9},
                 {6, 2},
                 {2, 4}
         };
-        test__1.fill(matr_t1);
+        test__2.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(test__2);
         assertThrows(IllegalStateException.class, () -> {
             test__1.lower(test__1);
         });
@@ -1224,31 +1246,33 @@ public class matrixTest {
 
     @Test
     public void testInvalid_10_im() {
-        matrix_im test__1 = new matrix_im(2,3);
+        Matrix test__2 = new Matrix(2,3);
         double[][] matr_t1 = {
                 {3, 9, 1},
                 {6, 2, 12}
         };
-        test__1.fill(matr_t1);
+        test__2.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(test__2);
         assertThrows(IllegalStateException.class, () -> {
             test__1.up(test__1);
         });
     }
 
-    @Test
+    /*@Test
     public void testInvalid_11_im() {
-        matrix_im test__1 = new matrix_im(2,3);
+        Matrix test__2 = new Matrix(2,3);
         double[][] matr_t1 = {
                 {3, 9, 1},
                 {6, 2, 12}
         };
-        test__1.fill(matr_t1);
+        test__2.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(test__2);
         assertThrows(IllegalStateException.class, () -> {
             test__1.fill(matr_t1);
         });
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testInvalid_12_im() {
         matrix_im test__1 = new matrix_im(2,3);
         double[][] matr_t1 = {
@@ -1259,9 +1283,9 @@ public class matrixTest {
         assertThrows(IllegalStateException.class, () -> {
             test__1.fill_random();
         });
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testInvalid_13_im() {
         matrix_im test__1 = new matrix_im(2,3);
         matrix_im test__2 = new matrix_im(3, 2);
@@ -1279,17 +1303,15 @@ public class matrixTest {
         test__1.fill(matr_t1);
         test__2.fill(matr_t2);
 
-        matrix_im test = test__1.mult(test__1, test__2);
+        matrix_im test = test__1.mult(test__2);
         assertThrows(IllegalStateException.class, () -> {
             test.fill(matr_t1);
         });
-    }
+    }*/
 
     @Test
     public void test_im() {
-        matrix_im test__1 = new matrix_im(4,4);
-        matrix_im test__2 = new matrix_im(4, 4);
-        matrix_im test__3 = new matrix_im(4, 4);
+        Matrix matr_1 = new Matrix(4,4);
 
         double[][] matr_t1 = {
                 {3, 10, 9, 3},
@@ -1310,18 +1332,20 @@ public class matrixTest {
                 {-6, 44, 50, 63}
         };
 
-        test__1.fill(matr_t1);
-        test__2.fill(matr_t2);
-        test__3.fill(matr_t3);
-        matrix_im test = test__1.mult(test__1, test__2);
+        matr_1.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr_1);
+        matr_1.fill(matr_t2);
+        matrix_im test__2 = new matrix_im(matr_1);
+        matr_1.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr_1);
+        matrix_im test = test__1.mult(test__2);
         boolean eq = test__3.equals(test);
         assertTrue(eq);
     }
 
     @Test
     void test_32_im() {
-        matrix_im test__1 = new matrix_im(3,3);
-        matrix_im test__3 = new matrix_im(3, 3);
+        Matrix matr_1 = new Matrix(3,3);
         double[][] matr_t1 = {
                 {5, 10, 8},
                 {25, 0, 9},
@@ -1333,8 +1357,10 @@ public class matrixTest {
                 {25, 0, 9},
                 {11, -5, 6}
         };
-        test__1.fill(matr_t1);
-        test__3.fill(matr_t3);
+        matr_1.fill(matr_t1);
+        matrix_im test__1 = new matrix_im(matr_1);
+        matr_1.fill(matr_t3);
+        matrix_im test__3 = new matrix_im(matr_1);
         matrix_im test = test__1.transp(test__1);
         boolean eq = test__3.equals(test__1);
         assertTrue(eq);
